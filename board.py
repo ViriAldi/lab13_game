@@ -19,7 +19,7 @@ class Board:
             if len(set(self.values[col::3])) == 1 and self.values[col]:
                 return self.values[col]
 
-        for row in range(3):
+        for row in [0, 3, 6]:
             if len(set(self.values[row:row+3])) == 1 and self.values[row]:
                 return self.values[row]
 
@@ -96,7 +96,4 @@ class Board:
         return self.next_pos[self.better]
 
     def __str__(self):
-        return "\n".join([" ".join(map(str, self.values[i:i+3])) for i in [0, 3, 6]])
-
-
-print(Board([1, 1, 0, 0, 0, 0, 0, 0, 0], last_step=-1))
+        return "\n".join(["".join(map(lambda x: str(x).rjust(3, " "), self.values[i:i+3])) for i in [0, 3, 6]])
